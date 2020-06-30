@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div id="app">
+   <!-- 조건문 v-else-if -->
+     <div>오늘은
+         <span v-if="dayWeek==1">월욜일~원래</span>
+         <span v-else-if="dayWeek==2">화요일~화가나서</span>
+         <span v-else-if="dayWeek==3">수욜일~수없이</span>
+         <span v-else-if="dayWeek==4">목욜일~목말라서</span>
+         <span v-else-if="dayWeek==5">금욜일~불금이라</span>
+         <span v-else-if="dayWeek==6">토욜일~토할때까지</span>
+         <span v-else="dayWeek==7">일욜일~다음날이 월요일이라</span>
+        마시는날~
+     </div>
+     <button onclick="rand()">다른날은?</button>
+
+   
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    
+    const app = new Vue({
+          el:"#app",
+          data:{
+            dayWeek:(new Date()).getDay()
+          }
+      })
+      
+      function rand(){
+          app.dayWeek =  Math.floor(Math.random()*7);
+      }
+
+      
+  </script>
+</body>
+</html>
