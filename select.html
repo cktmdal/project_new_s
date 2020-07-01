@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+ 
+    </style>
+</head>
+<body>
+    <div id="app">
+        <form>
+            <fieldset>
+                <legend>animal선택</legend>
+                <!-- 
+                               in->of
+                    v-for=item in items
+                    v-for=value in boject
+                    v-for=(item,index) in items
+                    v-for=(value,key,index) in items
+                -->
+                <!-- 최상위레벨clan -->
+                <select v-model="clan">
+                    <option v-for="(types,clan) in clans">{{clan}}</option>
+                </select>
+                <!-- 두번째레벨type : 변수 clan에 값이 있으면 
+                    select요소를 사용해서 type을 선택하고
+                    species를 추가한다
+                -->
+                <select v-model="type">
+                    <option v-for="(species,type) in clans[clan]">{{type}}</option>
+                </select>
+
+                <!-- 세번째레벨 animals : 첫번째와 두번째가 있을경우 세번째
+                엘리먼트를 표현 -->
+                <select v-if="clans[clan]">
+                     <option v-for="(animals,species) in clans[clan][type]" >{{species}}</option>
+                </select>
+            </fieldset>
+        </form>
+    </div> 
+    <script type="text/javascript" src="https://vuejs.org/js/vue.js"></script>
+    <script>
+      new Vue({
+             el:"#app",
+          data:{
+             clan:undefined,
+             type:undefined,
+             clans:{
+                 europe:{
+                     'have fingers':{
+                            human:'human',
+                            chimpanzee:'chimpanzee'
+                     },
+                     figerless:{
+                            cat:'cat',
+                            bear:'bear'
+                     }
+                 },
+                 asia:{
+                    fiying:{
+                        elgle:'elgle',
+                        pidgeon:'pidgeon'
+                    },
+                    'non flying':{
+                        chicken:'chicken'
+                    }
+                 } 
+             }
+          }
+      })
+
+    </script>
+</body>
+</html>
